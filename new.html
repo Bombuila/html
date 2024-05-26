@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Калькулятор стоимости товара</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        form {
+            margin-bottom: 20px;
+        }
+        label {
+            display: block;
+            margin-top: 10px;
+        }
+        input {
+            width: 100%;
+            padding: 8px;
+            margin-top: 5px;
+            box-sizing: border-box;
+        }
+        button {
+            margin-top: 20px;
+            padding: 10px;
+            width: 100%;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        h2 {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Калькулятор стоимости товара</h1>
+    <form id="calcForm">
+        <label for="a">Стоимость товара в юанях:</label>
+        <input type="number" id="a" name="a" step="0.01" required>
+        <label for="b">Вес товара в кг:</label>
+        <input type="number" id="b" name="b" step="0.01" required>
+        <button type="button" onclick="c()">Рассчитать</button>
+    </form>
+    <h2 id="result"></h2>
+
+    <script>
+        function c() {
+            const a = Number(document.getElementById('a').value) || 0;
+            const b = Number(document.getElementById('b').value) || 0;
+            let c;
+
+            if (a < 50) {
+                c = a * 13 + b * 54 * 13 + 300 + b * 200;
+            } else if (a >= 50 && a < 400) {
+                c = a * 13 + b * 54 * 13 + 500 + b * 200;
+            } else if (a >= 400 && a < 2000) {
+                c = a * 13 + b * 54 * 13 + 1000 + b * 200;
+            } else {
+                c = a * 13 + b * 54 * 13 + 2000 + b * 200;
+            }
+
+            document.getElementById('result').innerText = 'Итоговая стоимость товара: ' + c.toFixed(2) + ' рублей';
+        }
+    </script>
+</body>
+</html>
